@@ -1,7 +1,7 @@
 
-# 📝 Apuntes de Markdown — Comandos básicos y avanzados
+# 1. Teoria de Markdown — Comandos básicos y avanzados
 
----
+
 
 ## 1 Encabezados
 
@@ -87,25 +87,33 @@ ___
 ```
 
 
+## 9 Instalar Typora en Ubuntu
+
+Agregar la clave GPG oficial de Typora:
+
+
+```bash
+wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
+sudo add-apt-repository 'deb https://typora.io/linux ./'
+sudo apt update
+sudo apt install typora
+typora (para abrirlo)
+```
 
 
 
 
 
 
+# 1. Práctica — Descargar Ubuntu en una VM Windows, copiar la ISO a un USB y usarla en el host para instalar una nueva VM
 
 
-
-# Práctica — Descargar Ubuntu en una VM Windows, copiar la ISO a un USB y usarla en el host para instalar una nueva VM
-
----
 
 ## Objetivo
 - Descargar en la **VM Windows** la ISO de la última versión de Ubuntu Desktop.  
 - Pasar la ISO al **host Linux** mediante un **pendrive USB**.  
 - Crear una nueva máquina virtual en el host con esa ISO usando **virt-manager**.  
 
----
 
 ## 1. Descargar la ISO en la VM Windows
 
@@ -115,7 +123,7 @@ ___
 4. Descarga la ISO (ejemplo: `ubuntu-25.04-desktop-amd64.iso`).  
 5. Guarda la ISO en `C:\Users\<TuUsuario>\Downloads`.
 
----
+
 
 ## 2. Preparar un pendrive en el host
 
@@ -141,7 +149,7 @@ Mediante consola de comandos, sería de la siguiente forma, pero NO LO HAREMOS y
    sudo mkfs.exfat /dev/sdb1
    ```
 
----
+
 
 ## 3. Pasar el pendrive a la VM Windows (USB passthrough)
 
@@ -150,7 +158,7 @@ Mediante consola de comandos, sería de la siguiente forma, pero NO LO HAREMOS y
 3. Elige tu pendrive de la lista y pulsa Finish.
 4. Dentro de Windows debería aparecer el pendrive como una nueva unidad (E:\, por ejemplo).
 
----
+
    
 ## 4. Copiar la ISO al pendrive en Windows
 
@@ -159,7 +167,7 @@ Mediante consola de comandos, sería de la siguiente forma, pero NO LO HAREMOS y
 3. Espera a que termine la copia.
 4. Usa Quitar hardware con seguridad en Windows para desmontar el USB.
 
----
+
 
 ## 5. Volver a montar el pendrive en el host
 
@@ -178,22 +186,24 @@ Mediante consola de comandos, sería de la siguiente forma, pero NO LO HAREMOS y
   ```
 
 
----
+
 
 ## 6. Crear una nueva VM Ubuntu en el host con virt-manager
-En caso de que el dispositivo USB no funcione, la ISO está compartida tanto por FTP como SMB y así no tienes que hacer caso a los tres puntos anteriores.
+En caso de que el dispositivo USB no funcione, la ISO está compartida tanto por FTP como SMB y así no tienes que hacer caso a los 5 primeros puntos anteriores.
 FTP es un protocolo de red para transferir archivos entre un cliente y un servidor. Funciona sobre TCP, típicamente en los puertos 21 (control) y 20 (datos).
 Por otro lado, SMB es un protocolo de red para compartir archivos, impresoras y recursos entre computadoras, principalmente en entornos Windows.
 
 ### Windows
 
 \\<IP-del-servidor>\Publica (smb poner usuario Manolo contraseña 123456)
-ftp://alumnosiso:Iso15092025@<IP-servidor>
+
+ftp://alumnosiso:Iso15092025@IP-servidor
 
 
 ### Ubuntu
 
-ftp://alumnosiso:Iso15092025@<IP-servidor>
+ftp://alumnosiso:Iso15092025@IP-servidor
+
 smb://<IP-servidor>/Publica
 
 
@@ -214,3 +224,326 @@ smb://<IP-servidor>/Publica
 7. Finaliza: la VM arrancará desde la ISO y verás el instalador de Ubuntu.
 
 8. En caso de que algo vaya mal con gnome-disk, mátalo el proceso con: pskill gnome-disk
+
+
+
+
+---
+
+
+# 2. Teoria de Almacenamiento de datos
+
+## 1. Unidades de medida de la información
+
+En informática, la información se mide en bits y sus múltiplos. Las unidades de medida permiten cuantificar la capacidad de almacenamiento o el tamaño de datos.
+
+1. Bit
+
+Símbolo: b
+
+Definición: La unidad mínima de información.
+
+Valores posibles: 0 o 1
+
+Uso: Representa un estado lógico, verdadero/falso, encendido/apagado.
+
+2. Byte
+
+Símbolo: B
+
+Definición: Conjunto de 8 bits.
+
+Rango de valores: 0 a 255 (2⁸ posibles combinaciones)
+
+Uso: Representa un carácter de texto, un valor numérico pequeño o un color de 8 bits.
+
+3. Resto de medidas
+
+
+| Unidad   | Símbolo | Equivalencia binaria                    | Equivalencia decimal             | Uso típico                        |
+| -------- | ------- | --------------------------------------- | -------------------------------- | --------------------------------- |
+| Kilobyte | KB      | 2¹⁰ bytes = 1.024 B                     | 10³ bytes = 1.000 B              | Pequeños archivos de texto        |
+| Megabyte | MB      | 2²⁰ bytes = 1.048.576 B                 | 10⁶ bytes = 1.000.000 B          | Archivos de música, imágenes      |
+| Gigabyte | GB      | 2³⁰ bytes = 1.073.741.824 B             | 10⁹ bytes = 1.000.000.000 B      | Memoria RAM, discos duros         |
+| Terabyte | TB      | 2⁴⁰ bytes ≈ 1.099.511.627.776 B         | 10¹² bytes = 1.000.000.000.000 B | Almacenamiento masivo, servidores |
+| Petabyte | PB      | 2⁵⁰ bytes ≈ 1.125.899.906.842.624 B     | 10¹⁵ bytes                       | Centros de datos grandes          |
+| Exabyte  | EB      | 2⁶⁰ bytes ≈ 1.152.921.504.606.846.976 B | 10¹⁸ bytes                       | Internet global (teórico)         |
+
+
+
+
+
+
+
+
+# 2. Práctica — Observar la diferencia en notación decimal vs binaria
+
+Habitualmente, cuando compramos un disco duro, lo solecmos comprar con "unidades redondas", es decir, 1tb, 500gb...
+Sin embargo, a la hora de ver el disco dentro de nuestro ordenador, nos encontramos con sorpresas.
+En esta práctica, vais a comprobar el tamaño real de vuestro disco duro y a relacionarlo con las unidades de medida de información que hemos estudiado.
+
+
+## 1. Abrir la terminal
+
+Presiona `Ctrl + Alt + T` para abrir la terminal en Ubuntu.
+
+
+
+## 2. Listar los discos y particiones
+
+Escribe el siguiente comando:
+```bash
+lsblk -o NAME,SIZE,TYPE
+```
+
+Observa los discos (TYPE=disk) y sus tamaños (SIZE).
+
+
+## 3. Obtener el tamaño exacto en bytes
+Escribe:
+
+```bash
+sudo fdisk -l
+```
+
+Busca la línea que corresponda a tu disco, por ejemplo:
+
+```bash
+Disk /dev/sda: 500107 MB, 500107862016 bytes
+```
+
+Anota el tamaño en bytes y comprueba cómo se traduce a GB:
+
+GB = bytes ÷ 1.073.741.824
+
+¿Por qué sale este número?
+
+
+
+
+
+
+---
+
+# 3. Teoría de Sistemas Numéricos en Informática
+
+## 1. Sistema Binario
+
+El sistema binario es la base de la informática moderna, ya que los circuitos electrónicos manejan dos estados: encendido (1) y apagado (0).
+
+### 1.1 Definición
+
+Sistema de numeración en base 2. Solo utiliza los dígitos 0 y 1.
+
+### 1.2 Uso en informática
+
+Representa bits, el nivel más básico de información. Todos los datos y operaciones internas de la CPU se manejan en binario.
+
+Ejemplos:
+| Decimal | Binario |
+| ------- | ------- |
+| 0       | 0       |
+| 1       | 1       |
+| 2       | 10      |
+| 3       | 11      |
+| 4       | 100     |
+| 5       | 101     |
+| 6       | 110     |
+| 7       | 111     |
+| 8       | 1000    |
+| 9       | 1001    |
+| 10      | 1010    |
+
+
+
+## 2. Sistema Hexadecimal
+
+El sistema hexadecimal es un sistema de base 16 muy usado en informática para representar grandes cantidades de bits de forma más compacta.
+
+### 1.1 Definición
+
+Base 16: utiliza los dígitos 0-9 y las letras A-F (A=10, B=11, …, F=15). Cada dígito hexadecimal equivale exactamente a 4 bits (medio byte o nibble).
+
+### 1.2 Uso en informática
+
+Representar direcciones de memoria, valores de bytes y colores en programación. Facilita la lectura y escritura de números binarios largos.
+
+
+| Hexadecimal | Binario | Decimal |
+| ----------- | ------- | ------- |
+| 0           | 0000    | 0       |
+| 1           | 0001    | 1       |
+| 2           | 0010    | 2       |
+| 3           | 0011    | 3       |
+| 4           | 0100    | 4       |
+| 5           | 0101    | 5       |
+| 6           | 0110    | 6       |
+| 7           | 0111    | 7       |
+| 8           | 1000    | 8       |
+| 9           | 1001    | 9       |
+| A           | 1010    | 10      |
+| B           | 1011    | 11      |
+| C           | 1100    | 12      |
+| D           | 1101    | 13      |
+| E           | 1110    | 14      |
+| F           | 1111    | 15      |
+
+
+
+
+## 3. Convertir sistemas
+
+
+### 3.1 Bineario a hexadecimal
+
+El sistema binario usa base 2 (solo 0 y 1) y el hexadecimal usa base 16 (0–9 y A–F).
+La conversión es muy sencilla porque 1 dígito hexadecimal equivale exactamente a 4 bits (un nibble).
+
+### Paso 1
+
+Toma el número binario que quieres convertir. Agrupa los bits de derecha a izquierda en bloques de 4. Si el último grupo de la izquierda tiene menos de 4 bits, agrega ceros a la izquierda para completar el grupo.
+
+### Paso 2
+
+Convertir cada bloque a hexadecimal mirando la tabla siguiente ya mencionada antes
+¿Qué se hace si el numero tiene 10 bits? Pensarlo
+
+
+| Hexadecimal | Binario | Decimal |
+| ----------- | ------- | ------- |
+| 0           | 0000    | 0       |
+| 1           | 0001    | 1       |
+| 2           | 0010    | 2       |
+| 3           | 0011    | 3       |
+| 4           | 0100    | 4       |
+| 5           | 0101    | 5       |
+| 6           | 0110    | 6       |
+| 7           | 0111    | 7       |
+| 8           | 1000    | 8       |
+| 9           | 1001    | 9       |
+| A           | 1010    | 10      |
+| B           | 1011    | 11      |
+| C           | 1100    | 12      |
+| D           | 1101    | 13      |
+| E           | 1110    | 14      |
+| F           | 1111    | 15      |
+
+
+### 3.2 Hexadecimal al Binario
+
+Es exactamente lo mismo, al reves. Cada dígito del hexadecimal representa un número binario.
+
+
+### 3.3 Decimal al Binario
+
+El sistema decimal usa base 10 (0–9), y el sistema binario usa base 2 (0 y 1).
+Para pasar de decimal a binario, usamos el método de divisiones sucesivas:
+
+Toma el número decimal que quieres convertir.
+
+Divídelo entre 2.
+
+Anota el residuo (0 o 1).
+
+Divide el cociente entre 2 nuevamente y repite el proceso hasta que el cociente sea 0.
+
+```text
+13 ÷ 2 = 6 residuo 1
+6 ÷ 2  = 3 residuo 0
+3 ÷ 2  = 1 residuo 1
+1 ÷ 2  = 0 residuo 1
+```
+
+
+# 3. Práctica — Observar la diferencia en notación decimal vs binaria. Rellena la siguiente tabla
+
+
+| Decimal | Binario  | Hexadecimal |
+| ------- | -------- | ----------- |
+| 5       |          |             |
+| 12      |          |             |
+| 25      |          |             |
+| 60      |          |             |
+|         | 11010110 |             |
+|         | 10101100 |             |
+|         |          | 1F          |
+|         |          | A7          |
+
+
+
+----
+
+# 4. Teoria — Hardware básico de un ordenador. CPU y RAM
+
+
+## 1. ¿Qué es la CPU?
+
+La CPU (Unidad Central de Procesamiento) es el cerebro del ordenador. Se encarga de ejecutar instrucciones de los programas y procesa datos que se encuentran en la memoria o que recibe de dispositivos de entrada.
+Está formada por varias subunidades internas, como la unidad aritmético-lógica (ALU) y la unidad de control.
+Los registros son pequeñas áreas de memoria dentro de la CPU que almacenan temporalmente datos o direcciones. Son mucho más rápidos que la RAM y cada registro puede almacenar una cantidad fija de bits, según la arquitectura (8, 16, 32 o 64 bits). 
+
+
+
+
+| Tipo de registro                    | Ejemplos       | Uso principal                                              | Ejemplo práctico                                                                                                  |
+| ----------------------------------- | -------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Registros de propósito general**  | AX, BX, CX, DX | Almacenar temporalmente datos y resultados de operaciones  | `MOV AX, 5` → almacena 5 en AX; `ADD AX, BX` → suma BX a AX                                                       |
+| **Registros de segmento**           | CS, DS, SS, ES | Contienen direcciones base de segmentos de memoria         | `MOV AX, [DS:1234h]` → lee un valor desde un segmento de datos DS. El registro DS tiene, por ejemplo, el valor 2000h. a CPU suma DS + 1234h|
+| **Puntero de instrucción**          | IP/EIP/RIP     | Apunta a la siguiente instrucción que la CPU debe ejecutar | Antes de ejecutar la instrucción MOV AX, BX, el registro de puntero de instrucción (IP) contiene el valor 2000h, es decir, apunta al inicio de esa instrucción en memoria. Cuando la CPU empieza a ejecutar MOV AX, BX, IP sigue indicando 2000h mientras la CPU lee la instrucción y copia el valor de BX a AX. Una vez que la instrucción se ha completado, la CPU incrementa automáticamente el IP en 3 bytes (el tamaño de la instrucción) para que ahora apunte a la siguiente instrucción en memoria, ADD AX, 5, que comienza en la dirección 2003h.|
+
+
+La unidad aritmético-lógica (ALU) es la parte de la CPU que se encarga de realizar todas las operaciones matemáticas y lógicas. Por ejemplo, suma, resta, multiplicación, división, así como operaciones lógicas como AND, OR, XOR o comparaciones entre números. Cada vez que ejecutamos una instrucción como ADD AX, BX, la ALU calcula el resultado de la operación y actualiza los indicadores del estado de la CPU, como la bandera de cero o de acarreo.
+
+Por otro lado, la unidad de control (CU) coordina todo el funcionamiento de la CPU. Su función principal es decodificar las instrucciones, decidir qué señales enviar a la ALU, a los registros y a los buses de memoria, y controlar el flujo de datos dentro de la CPU. (MOV AX, [1234h]) Gracias a la unidad de control, la CPU sabe qué operación ejecutar, qué registros usar y cuándo leer o escribir datos en la memoria.
+
+
+
+
+
+## 2. ¿Qué es la RAM?
+La RAM es la memoria principal del sistema. Se organiza en direcciones lineales, cada dirección contiene 1 byte, ¿qué es un byte? Mira lo explciado anteriormente
+La CPU puede leer o escribir en la RAM mediante el bus de direcciones (dice dónde) y el bus de datos (dice qué valor).
+
+Ejemplo: la instrucción
+
+```bash
+MOV AX, [1234h]
+```
+
+La CPU coloca 1234h en el bus de direcciones.
+Activa una lectura de memoria. El valor que hay en RAM en esa dirección entra por el bus de datos y se guarda en AX.
+
+
+# 4. Práctica — Curiosidades y importancia de los sistemas de enumaración binario y hexadecimal en la informatica.
+
+
+## 4.1 Traduciendo a esamblador, da la instrucción de forma correcta en hexadecimal.
+
+| Nº | Instrucción a realizar                     | Registro/Dato  | Dirección en decimal | Dirección en hexadecimal |
+| -- | ------------------------------------------ | -------------- | -------------------- | ------------------------ |
+| 1  | Mover un valor a un registro               | AX             | 4660                 | ?                        |
+| 2  | Mover un valor desde memoria a un registro | BX             | 12345                | ?                        |
+| 3  | Sumar el contenido de un registro a otro   | AX + BX        | –                    | –                        |
+| 4  | Mover un valor inmediato a un registro     | CX             | –                    | –                        |
+| 5  | Sumar un valor de memoria a un registro    | DX + \[Memory] | 54321                | ?                        |
+
+
+MOV AX, [-]
+MOV BX, [-]
+ADD AX, BX
+MOV CX, 10
+ADD DX, [-]
+
+
+## 4.2 Codificaciones de textos
+
+El texto que ves en tu pantalla no es más que una codificación del lenguaje binario. Todo lo que se muestra en la pantalla, ya sean letras, números o símbolos, se traduce finalmente a ceros y unos, que la computadora puede interpretar.
+A lo largo de la historia de la informática, se han desarrollado distintas codificaciones de caracteres para representar texto en binario: ASCII, EBCDIC, Unicode, Extended ASCII.
+
+Establece una linea temporal de las distintas codificaciones, dando ejemplos y el número de bits que utliza cada una.
+
+## 4.3 Codificaciones de textos
+
+En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico de 4GB de ram. ¿por qué? Cual es el límite teórico a día de hoy?
+
+
