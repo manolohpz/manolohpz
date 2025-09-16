@@ -320,6 +320,11 @@ GB = bytes ÷ 1.073.741.824
 
 
 
+## 4. Obtener el tamaño exacto en bytes
+Intenta sacar esta información (de alguna forma) en un sistema opeerativo windows a través de tu VM.
+
+
+
 
 
 
@@ -514,7 +519,7 @@ La CPU coloca 1234h en el bus de direcciones.
 Activa una lectura de memoria. El valor que hay en RAM en esa dirección entra por el bus de datos y se guarda en AX.
 
 
-# 4. Práctica — Curiosidades y importancia de los sistemas de enumaración binario y hexadecimal en la informatica.
+# 4. Práctica — Curiosidades y importancia de los sistemas de enumeración binario y hexadecimal en la informatica.
 
 
 ## 4.1 Traduciendo a esamblador, da la instrucción de forma correcta en hexadecimal.
@@ -544,6 +549,6 @@ Establece una linea temporal de las distintas codificaciones, dando ejemplos y e
 
 ## 4.3 Codificaciones de textos
 
-En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico de 4GB de ram. ¿por qué? Cual es el límite teórico a día de hoy?
+En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico de 4GB de ram, ¿por qué? ¿cuál es el límite teórico a día de hoy?
 
 
