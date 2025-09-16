@@ -59,6 +59,13 @@ Usa `#` para títulos. Cuantos más `#`, más pequeño el encabezado.
 
 ## 6 Codigo
 
+El codigo se puede encapsular con las siguiente etiquetas:
+``````markdown
+```bash
+Escribe aquí dentro lo que sea
+```
+
+``````
 
 
 
@@ -174,6 +181,23 @@ Mediante consola de comandos, sería de la siguiente forma, pero NO LO HAREMOS y
 ---
 
 ## 6. Crear una nueva VM Ubuntu en el host con virt-manager
+En caso de que el dispositivo USB no funcione, la ISO está compartida tanto por FTP como SMB y así no tienes que hacer caso a los tres puntos anteriores.
+FTP es un protocolo de red para transferir archivos entre un cliente y un servidor. Funciona sobre TCP, típicamente en los puertos 21 (control) y 20 (datos).
+Por otro lado, SMB es un protocolo de red para compartir archivos, impresoras y recursos entre computadoras, principalmente en entornos Windows.
+
+### Windows
+
+\\<IP-del-servidor>\Publica (smb poner usuario Manolo contraseña 123456)
+ftp://alumnosiso:Iso15092025@<IP-servidor>
+
+
+### Ubuntu
+
+ftp://alumnosiso:Iso15092025@<IP-servidor>
+smb://<IP-servidor>/Publica
+
+
+## 7. Crear una nueva VM Ubuntu en el host con virt-manager
 
 1. Abre virt-manager.
 
