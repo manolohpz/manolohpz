@@ -1,4 +1,4 @@
-[formulario inicial](https://forms.gle/tSQQLZVRSPiFFKtV6)
+[formulario inicial](https://forms.gle/H8a9SHRHcRtXi4yNA)
 Recordar elección de delegado
 
 
