@@ -763,13 +763,13 @@ top
 ```
 
 
-![Texto alternativo](ruta/imagen.png)
+![Texto alternativo](Imágenes/captura_practica.png)
 
 
 busca en monitorización del sistema a través la información proporcionada por el comando.
 
 
-![Texto alternativo](ruta/imagen.png)
+![Texto alternativo](Imágenes/captura_practica2.png)
 
 
 
