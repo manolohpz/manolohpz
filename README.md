@@ -489,7 +489,7 @@ Haz clasificación de comando según: Prompt de usuario, Comando, Parámetro, Op
 Disk /dev/sda: 500107 MB, 500107862016 bytes
 ```
 
-Anota el tamaño en bytes y comprueba cómo se traduce a GB: GB = bytes ÷ 1.073.741.824 ¿Por qué sale este número, es un número redondo como los que anuncian los fabricantes?
+Anota el tamaño en bytes y comprueba cómo se traduce a GB: GB = bytes ÷ 1.073.741.824 ¿Por qué sale este número?,es un número redondo como en el caso de tu máquina VM? Si la tienda de tu barrio te vendiese este disco, ¿cuántos GB dirían que tiene?
 
 
 
@@ -498,7 +498,6 @@ Intenta sacar esta información (de alguna forma) en un sistema opeerativo windo
 
 
 ## 5. ¿Qué tipo de CLI puede usar Windows? Busca información al respecto.
-Intenta sacar esta información (de alguna forma) en un sistema opeerativo windows a través de tu VM.
 
 ## 6. ¿Qué es un Live CD o un disco booteable? Busca información al respecto de la relación entre dd y un Live CD, así como precauciones del comando dd.
 
