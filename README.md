@@ -458,6 +458,7 @@ Salida: no se muestra nada en pantalla; se guarda en lista.txt.
 Habitualmente, cuando compramos un disco duro, lo solecmos comprar con "unidades redondas", es decir, 1tb, 500gb...
 Sin embargo, a la hora de ver el disco dentro de nuestro ordenador, nos encontramos con sorpresas.
 En esta práctica, usando la maquina virtual de Ubuntu, vais a comprobar el tamaño real de vuestro disco duro y a relacionarlo con las unidades de medida de información que hemos estudiado.
+Entrega un Mardown via PDF explicando cada paso.
 
 
 ## 1. Abrir la terminal
@@ -636,7 +637,7 @@ Divide el cociente entre 2 nuevamente y repite el proceso hasta que el cociente 
 
 
 # 3. Práctica — Observar la diferencia en notación decimal vs binaria. Rellena la siguiente tabla
-
+Entrega en Markdown (via PDF) la explicación de las operaciones.
 
 | Decimal | Binario  | Hexadecimal |
 | ------- | -------- | ----------- |
@@ -696,6 +697,8 @@ Activa una lectura de memoria. El valor que hay en RAM en esa dirección entra p
 
 # 4. Práctica — Curiosidades y importancia de los sistemas de enumeración binario y hexadecimal en la informatica.
 
+Entrega en formato PDF los puntos; 4.2 y 4.3
+
 
 ## 4.1 Traduciendo a esamblador, da la instrucción de forma correcta en hexadecimal (Lo resolvemos en clase).
 
@@ -740,8 +743,43 @@ En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico d
 
 ----
 
-# 5. Teoria — Hardware básico de un ordenador. CPU y RAM
+# 5. Práctica — Comparación GUI vs CLI en Ubuntu e instalación de KDE
+Abre tu máquina virtual de Ubuntu. Los objetivos de estas práctica son: Comprender las diferencias entre trabajar con GUI y CLI en Ubuntu, realizar tareas equivalentes en ambos entornos e instalar y probar un nuevo desktop environment (KDE Plasma) mediante CLI. Haz capturas del proceso y entrega un archivo pdf.
+
+## Ejecuta el siguiente código en bash
+
+```bash
+uname -a
+lsb_release -a
+```
+A partir de este comando, saca la versión del kernel y busca en información del sistema a través la información proporcionada por el comando.
 
 
 
+## Ejecuta el siguiente código en bash
+
+```bash
+ps aux | head -10
+top
+```
+
+
+![Texto alternativo](ruta/imagen.png)
+
+
+busca en monitorización del sistema a través la información proporcionada por el comando.
+
+
+![Texto alternativo](ruta/imagen.png)
+
+
+
+
+## Instala la GUI de KDE y pruebala al cerrar sesión
+
+```bash
+sudo apt install kde-plasma-desktop -y
+```
+
+![Texto alternativo](ruta/imagen.png)
 
