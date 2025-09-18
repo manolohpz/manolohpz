@@ -195,16 +195,16 @@ Por otro lado, SMB es un protocolo de red para compartir archivos, impresoras y 
 
 ### Windows
 
-- \\<IP-del-servidor>\Publica (smb poner usuario Manolo contraseña 123456)
+- `\\<IP-del-servidor>\Publica (smb poner usuario Manolo contraseña 123456)`
 
-- ftp://alumnosiso:Iso15092025@IP-servidor
+- `ftp://alumnosiso:Iso15092025@IP-servidor`
 
 
 ### Ubuntu
 
-- ftp://alumnosiso:Iso15092025@IP-servidor
+- `ftp://alumnosiso:Iso15092025@IP-servidor`
 
-- smb://<IP-servidor>/Publica
+- `smb://<IP-servidor>/Publica`
 
 
 ## 7. Crear una nueva VM Ubuntu en el host con virt-manager
