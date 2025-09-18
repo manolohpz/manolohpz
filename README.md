@@ -751,7 +751,7 @@ Abre tu máquina virtual de Ubuntu. Los objetivos de estas práctica son: Compre
 uname -a
 lsb_release -a
 ```
-A partir de este comando, saca la versión del kernel y busca en información del sistema a través la información proporcionada por el comando.
+- A partir de este comando, saca la versión del kernel y busca en información del sistema a través la información proporcionada por el comando.
 
 
 
@@ -759,18 +759,17 @@ A partir de este comando, saca la versión del kernel y busca en información de
 
 ```bash
 ps -eo comm,%cpu,%mem --sort=-%mem | head -15
-top
 ```
-
-
-![Texto alternativo](Imágenes/captura_practica.png)
-
-
-busca en monitorización del sistema a través la información proporcionada por el comando.
-
 
 ![Texto alternativo](Imágenes/captura_practica2.png)
 
+
+
+- Busca en monitorización del sistema a través la información proporcionada por el comando.
+
+
+
+![Texto alternativo](Imágenes/captura_practica.png)
 
 
 
@@ -779,6 +778,4 @@ busca en monitorización del sistema a través la información proporcionada por
 ```bash
 sudo apt install kde-plasma-desktop -y
 ```
-
-![Texto alternativo](ruta/imagen.png)
 
