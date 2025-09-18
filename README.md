@@ -758,7 +758,7 @@ A partir de este comando, saca la versión del kernel y busca en información de
 ## Ejecuta el siguiente código en bash
 
 ```bash
-ps aux | head -10
+ps -eo comm,%cpu,%mem --sort=-%mem | head -15
 top
 ```
 
