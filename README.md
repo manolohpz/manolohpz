@@ -331,16 +331,133 @@ Símbolo: B, representa un conjunto de 8 bits con rango de valores: 0 a 255 (2�
 | Petabyte | PB      | 2⁵⁰ bytes ≈ 1.125.899.906.842.624 B     | 10¹⁵ bytes                       | Centros de datos grandes          |
 | Exabyte  | EB      | 2⁶⁰ bytes ≈ 1.152.921.504.606.846.976 B | 10¹⁸ bytes                       | Internet global (teórico)         |
 
+## Formas de guardar la información
+
+- Cuando hablamos de cómo se guarda la información en un ordenador, siempre debemos volver a lo esencial: todo se reduce a bits, ceros y unos. Estos valores, que representan estados eléctricos o magnéticos, necesitan un soporte físico en el que almacenarse para que el sistema pueda conservarlos incluso cuando se apaga la máquina.
+
+- Durante décadas, ese soporte ha sido el disco duro mecánico o HDD. Un HDD funciona con platos recubiertos de material magnético que giran a gran velocidad. Un cabezal de lectura y escritura se desplaza sobre esos platos, cambiando la orientación de pequeñísimas zonas magnéticas para representar un 0 o un 1. La información no se almacena de forma caótica, sino organizada en sectores (unidades mínimas de almacenamiento, normalmente de 512 bytes o 4 KB), que a su vez forman pistas y cilindros. Esta organización permite que el sistema operativo localice y lea los datos de manera ordenada.
+
+- Más recientemente aparecieron los SSD o discos de estado sólido, que funcionan de una manera completamente diferente. En lugar de partes mecánicas y magnéticas, los SSD utilizan memoria flash NAND. Cada bit de información queda guardado como una carga eléctrica dentro de transistores microscópicos. La ventaja fundamental es que no hay partes móviles: la lectura y escritura es casi instantánea y mucho más fiable a largo plazo frente a golpes o vibraciones. La información se organiza en páginas (que suelen ser de 4 a 16 KB). Esas páginas no están sueltas: se agrupan en bloques, normalmente de 1 MB (varias páginas juntas), pero el principio sigue siendo el mismo: representar ceros y unos que luego el sistema operativo agrupa en archivos y carpetas. El borrado siempre se hace a nivel de bloque completo, es decir, la unidad mínima de borrado es 1MB.
+
+-Y aquí entra en juego una herramienta clásica de Linux: el comando dd. Este programa trabaja copiando datos a bajo nivel, en bloques cuyo tamaño puede configurarse con el parámetro bs (block size). Si usas dd con un tamaño de bloque alineado con las páginas o bloques físicos del SSD (por ejemplo, 4K o 1M), el rendimiento será mucho mejor. Si eliges tamaños muy pequeños (1K, 512 bytes), el SSD tiene que hacer más operaciones internas.
+
+  -En un SSD, la unidad mínima física de escritura es la página (4 KB – 16 KB).
+
+  -Si usas dd con un tamaño de bloque (bs) que coincide con la página física (por ejemplo, 4K), la escritura se alinea bien y es eficiente. Supongamos que quiero llenar un SSD con datos de prueba:
+  
+    - if = input file (/dev/urandom, datos aleatorios).
+
+    - of = output file (prueba.img).
+  
+    - bs=1M → escribo en bloques de 1 MB.
+
+    - Esto coincide bastante con el tamaño de un bloque interno del SSD (≈128 páginas de 8K = 1 MB).
 
 
 
+## Consola. Linea de comandos.
+
+La interfaz de línea de comandos, en inglés Command Line Interface o CLI, es el conjunto de elementos visuales que permiten, sobre un dispositivo de salida, indicar órdenes o comandos utilizando un dispositivo de entrada. Concretamente se utiliza el teclado para invocar comandos configurados para realizar una serie de acciones y el resultado de la ejecución de estas acciones se mostrará por pantalla.
+
+En cualquier CLI se pueden encontrar los siguientes elementos, que se estudian con el caso concreto de un terminal Linux (figura 1.13):
+
+- Prompt de usuario: indica el nombre del usuario (fer), el nombre de la máquina (fer-pc), el directorio en el que se encuentra actualmente (~/Documentos) y si el usuario tiene permisos de administrador (#) o es un usuario corriente ($).
+
+- Comando: programa que va a ejecutar el usuario (echo).
+
+- Parámetros: valores de configuración que se dan al programa (“Hola ISO”). Un tipo de parámetros especiales son los flags (también llamado opción o switch) es un parámetro que se añade a un comando para modificar su comportamiento.
+
+- Operadores: elementos para enlazar la salida de un programa con la entrada de otro o con la escritura de datos en ficheros.
+
+- Salida: datos o información que ofrece el programa como resultado de su procesamiento.
+
+## Ejemplos en ubuntu:
+Uno de los comandos más comunes que veremos cuando listemos la estructura de un directorio en linux (siguiente tema), será el comando ls. En los siguientes ejemplos se muestran casos sencillos de uso dividiendo en la terminología usada anteriormente. La estructura de directorio de un debion también se verá en el siguiente tema y no debe ser objeto de preocupación del alumnado.
+
+### Ejemplo 1: ls simple
+
+```bash
+fer@pc:~/Documentos$ ls
+```
+
+Prompt de usuario: fer@pc:~/Documentos$
+
+Comando: ls
+
+Parámetro: (ninguno en este caso)
+
+Operadores: (ninguno)
+
+Salida: lista de archivos del directorio actual, ej.:
+- informe.txt
+- tareas.pdf
+- notas.csv
+
+### Ejemplo 2: ls con parámetro (otro directorio)
+
+```bash
+fer@pc:~$ ls /etc
+```
+
+Prompt de usuario: fer@pc:~$
+
+Comando: ls
+
+Parámetro: /etc (indico el directorio que quiero listar)
+
+Operadores: (ninguno)
+
+Salida:
+-hosts
+-passwd
+-shadow
+-ssh
 
 
-# 2. Práctica — Observar la diferencia en notación decimal vs binaria
+### Ejemplo 3: ls con flag (parámetro especial)
+
+```bash
+fer@pc:~/Descargas$ ls -l
+```
+
+Prompt de usuario: fer@pc:~/Descargas$
+
+Comando: ls
+
+Parámetro (flag): -l (listado largo)
+
+Operadores: (ninguno)
+
+Salida:
+```bash
+-rw-r--r-- 1 fer fer  1024 sep  1 10:00 informe.txt
+drwxr-xr-x 2 fer fer  4096 sep  2 11:30 proyectos
+```
+
+
+### Ejemplo 4: ls con operador de redirección
+
+```bash
+fer@pc:~$ ls /bin > lista.txt
+```
+
+Prompt de usuario: fer@pc:~$
+
+Comando: ls
+
+Parámetro (flag): /bin
+
+Operadores: > (redirige la salida a un archivo)
+
+Salida: no se muestra nada en pantalla; se guarda en lista.txt.
+
+
+
+# 2. Práctica — Observar la diferencia en notación decimal vs binaria. Probamos la CLI de Ubuntu.
 
 Habitualmente, cuando compramos un disco duro, lo solecmos comprar con "unidades redondas", es decir, 1tb, 500gb...
 Sin embargo, a la hora de ver el disco dentro de nuestro ordenador, nos encontramos con sorpresas.
-En esta práctica, vais a comprobar el tamaño real de vuestro disco duro y a relacionarlo con las unidades de medida de información que hemos estudiado.
+En esta práctica, usando la maquina virtual de Ubuntu, vais a comprobar el tamaño real de vuestro disco duro y a relacionarlo con las unidades de medida de información que hemos estudiado.
 
 
 ## 1. Abrir la terminal
@@ -356,7 +473,7 @@ Escribe el siguiente comando:
 lsblk -o NAME,SIZE,TYPE
 ```
 
-Observa los discos (TYPE=disk) y sus tamaños (SIZE).
+Haz clasificación de comando según: Prompt de usuario, Comando, Parámetro, Operadores, Salida y observa los discos (TYPE=disk) y sus tamaños (SIZE).
 
 
 ## 3. Obtener el tamaño exacto en bytes
@@ -366,17 +483,13 @@ Escribe:
 sudo fdisk -l
 ```
 
-Busca la línea que corresponda a tu disco, por ejemplo:
+Haz clasificación de comando según: Prompt de usuario, Comando, Parámetro, Operadores, Salida y busca la línea que corresponda a tu disco, por ejemplo:
 
 ```bash
 Disk /dev/sda: 500107 MB, 500107862016 bytes
 ```
 
-Anota el tamaño en bytes y comprueba cómo se traduce a GB:
-
-GB = bytes ÷ 1.073.741.824
-
-¿Por qué sale este número?
+Anota el tamaño en bytes y comprueba cómo se traduce a GB: GB = bytes ÷ 1.073.741.824 ¿Por qué sale este número, es un número redondo como los que anuncian los fabricantes?
 
 
 
@@ -384,7 +497,8 @@ GB = bytes ÷ 1.073.741.824
 Intenta sacar esta información (de alguna forma) en un sistema opeerativo windows a través de tu VM.
 
 
-
+## 5. ¿Qué tipo de CLI puede usar Windows? Busca información al respecto.
+Intenta sacar esta información (de alguna forma) en un sistema opeerativo windows a través de tu VM.
 
 
 
@@ -582,7 +696,7 @@ Activa una lectura de memoria. El valor que hay en RAM en esa dirección entra p
 # 4. Práctica — Curiosidades y importancia de los sistemas de enumeración binario y hexadecimal en la informatica.
 
 
-## 4.1 Traduciendo a esamblador, da la instrucción de forma correcta en hexadecimal.
+## 4.1 Traduciendo a esamblador, da la instrucción de forma correcta en hexadecimal (Lo resolvemos en clase).
 
 | Nº | Instrucción a realizar                     | Registro/Dato  | Dirección en decimal | Dirección en hexadecimal |
 | -- | ------------------------------------------ | -------------- | -------------------- | ------------------------ |
@@ -603,12 +717,48 @@ ADD DX, [-]
 ## 4.2 Codificaciones de textos
 
 El texto que ves en tu pantalla no es más que una codificación del lenguaje binario. Todo lo que se muestra en la pantalla, ya sean letras, números o símbolos, se traduce finalmente a ceros y unos, que la computadora puede interpretar.
-A lo largo de la historia de la informática, se han desarrollado distintas codificaciones de caracteres para representar texto en binario: ASCII, EBCDIC, Unicode, Extended ASCII.
+A lo largo de la historia de la informática, se han desarrollado distintas codificaciones de caracteres para representar texto en binario: EBCDIC, ASCII,Extended ASCII y Unicode,
 
-Establece una linea temporal de las distintas codificaciones, dando ejemplos y el número de bits que utliza cada una.
+Establece una linea temporal de las distintas codificaciones, dando ejemplos y el número de bits que utliza cada una así como el número total de caracteres posibles. Si un tipo de codificación admitía hasta 7 bits: ¿cuál es la cantidad de carácteres admitidos en total?
+
+| Carácter | UTF-8 (binario)                       | Unicode (hexadecimal) |
+| -------- | ------------------------------------- | --------------------- |
+| A        | `01000001`                            | (rellenar)  
+| ñ        | `11000011 10110001`                   | (rellenar)            |
+| €        | (rellenar)                                | U+20AC            |
+| 😂       | (rellenar)                             | U+1F602            |
+| 中        | `11100100 10111000 10101101`          | (rellenar)            |
+
+
 
 ## 4.3 Codificaciones de textos
 
 En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico de 4GB de ram, ¿por qué? ¿cuál es el límite teórico a día de hoy?
 
+
+
+----
+
+# 5. Teoria — Hardware básico de un ordenador. CPU y RAM
+
+
+## 1. ¿Qué es la CPU?
+
+La CPU (Unidad Central de Procesamiento) es el cerebro del ordenador. Se encarga de ejecutar instrucciones de los programas y procesa datos que se encuentran en la memoria o que recibe de dispositivos de entrada.
+Está formada por varias subunidades internas, como la unidad aritmético-lógica (ALU) y la unidad de control.
+Los registros son pequeñas áreas de memoria dentro de la CPU que almacenan temporalmente datos o direcciones. Son mucho más rápidos que la RAM y cada registro puede almacenar una cantidad fija de bits, según la arquitectura (8, 16, 32 o 64 bits). 
+
+
+
+
+| Tipo de registro                    | Ejemplos       | Uso principal                                              | Ejemplo práctico                                                                                                  |
+| ----------------------------------- | -------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Registros de propósito general**  | AX, BX, CX, DX | Almacenar temporalmente datos y resultados de operaciones  | `MOV AX, 5` → almacena 5 en AX; `ADD AX, BX` → suma BX a AX                                                       |
+| **Registros de segmento**           | CS, DS, SS, ES | Contienen direcciones base de segmentos de memoria         | `MOV AX, [DS:1234h]` → lee un valor desde un segmento de datos DS. El registro DS tiene, por ejemplo, el valor 2000h. a CPU suma DS + 1234h|
+| **Puntero de instrucción**          | IP/EIP/RIP     | Apunta a la siguiente instrucción que la CPU debe ejecutar | Antes de ejecutar la instrucción MOV AX, BX, el registro de puntero de instrucción (IP) contiene el valor 2000h, es decir, apunta al inicio de esa instrucción en memoria. Cuando la CPU empieza a ejecutar MOV AX, BX, IP sigue indicando 2000h mientras la CPU lee la instrucción y copia el valor de BX a AX. Una vez que la instrucción se ha completado, la CPU incrementa automáticamente el IP en 3 bytes (el tamaño de la instrucción) para que ahora apunte a la siguiente instrucción en memoria, ADD AX, 5, que comienza en la dirección 2003h.|
+
+
+La unidad aritmético-lógica (ALU) es la parte de la CPU que se encarga de realizar todas las operaciones matemáticas y lógicas. Por ejemplo, suma, resta, multiplicación, división, así como operaciones lógicas como AND, OR, XOR o comparaciones entre números. Cada vez que ejecutamos una instrucción como ADD AX, BX, la ALU calcula el resultado de la operación y actualiza los indicadores del estado de la CPU, como la bandera de cero o de acarreo.
+
+Por otro lado, la unidad de control (CU) coordina todo el funcionamiento de la CPU. Su función principal es decodificar las instrucciones, decidir qué señales enviar a la ALU, a los registros y a los buses de memoria, y controlar el flujo de datos dentro de la CPU. (MOV AX, [1234h]) Gracias a la unidad de control, la CPU sabe qué operación ejecutar, qué registros usar y cuándo leer o escribir datos en la memoria.
 
