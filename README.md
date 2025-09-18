@@ -1,7 +1,9 @@
+[formulario inicial](https://forms.gle/tSQQLZVRSPiFFKtV6)
+Recordar elección de delegado
+
+
 
 # 1. Teoria de Markdown — Comandos básicos y avanzados
-
-
 
 ## 1 Encabezados
 
