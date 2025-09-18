@@ -89,15 +89,15 @@ ___
 
 ## 9 Instalar Typora en Ubuntu
 
-Agregar la clave GPG oficial de Typora:
+Para la instalación de typora usaremos muchos comandos bash distintos. Por ahora, conviene que os familiariceis con algunos. En la práctica 5, veremos un poco sobre los distintos paquetes de las distintas distribuciones aunque no veremos mucho de esto hasta más entrados en temario.
 
 
 ```bash
-wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
-sudo add-apt-repository 'deb https://typora.io/linux ./'
+sudo mkdir -p /etc/apt/keyrings
+rl -fsSL https://downloads.typora.io/typora.gpggg. . sudo tee /etc/apt/keyrings/typora.gpg.gpg
+echo "deb [signed-by=/etc/apt/keyrings/typora.gpg] https://downloads.typora.io/linux ./" . sudo tee /etc/apt/sources.list.d/typora.list
 sudo apt update
 sudo apt install typora
-typora (para abrirlo)
 ```
 
 
@@ -105,7 +105,7 @@ typora (para abrirlo)
 
 
 
-# 1. Práctica — Descargar Ubuntu en una VM Windows, copiar la ISO a un USB y usarla en el host para instalar una nueva VM
+# 1. Primera Práctica — Descargar Ubuntu en una VM Windows, copiar la ISO a un USB y usarla en el host para instalar una nueva VM
 
 
 
@@ -146,7 +146,8 @@ Mediante consola de comandos, sería de la siguiente forma, pero NO LO HAREMOS y
 
    ```bash
    sudo apt install -y exfatprogs   # si no está instalado
-   sudo mkfs.exfat /dev/sdb1
+   sudo umount /dev/sdb   # el dispositivo no puede estar montado en el sistema de archivos
+   sudo mkfs.exfat /dev/sdb
    ```
 
 
@@ -195,16 +196,16 @@ Por otro lado, SMB es un protocolo de red para compartir archivos, impresoras y 
 
 ### Windows
 
-\\<IP-del-servidor>\Publica (smb poner usuario Manolo contraseña 123456)
+- \\<IP-del-servidor>\Publica (smb poner usuario Manolo contraseña 123456)
 
-ftp://alumnosiso:Iso15092025@IP-servidor
+- ftp://alumnosiso:Iso15092025@IP-servidor
 
 
 ### Ubuntu
 
-ftp://alumnosiso:Iso15092025@IP-servidor
+- ftp://alumnosiso:Iso15092025@IP-servidor
 
-smb://<IP-servidor>/Publica
+- smb://<IP-servidor>/Publica
 
 
 ## 7. Crear una nueva VM Ubuntu en el host con virt-manager
@@ -222,7 +223,7 @@ el proceso en sí, es simple. Para ello, primero, hay que entender que ubuntu no
 
 - Si no hay nada montado, /mnt es una carpeta vacía normal en el host.
 
-🔹 2. Discos físicos (ejemplo: un pendrive)
+### Uso en Discos físicos (ejemplo: un pendrive)
 
 Un pendrive aparece como dispositivo, por ejemplo /dev/sdb1. Para montarlo manualmente:
 
@@ -255,24 +256,30 @@ sudo guestmount -a /var/lib/libvirt/images/mi_vm.qcow2 -i --ro /mnt
 
 ### Por ultimo vemos como pasar la informacion de la VM al host
 
-Navega hasta: 
-
+- Navega hasta: 
+```bash
 /mnt/Users/manolo/Downloads/
+```
 
+- Copiar el archivo windows.iso de esa carpeta al Downloads del usuario manolo del host Ubuntu:
 
-Copiar el archivo windows.iso de esa carpeta al Downloads del usuario manolo del host Ubuntu:
-
+```bash
 cp "/mnt/Users/manolo/Downloads/windows.iso" "/home/manolo/Downloads/"
+  ```
 
-Desmontar el disco virtual:
+- Desmontar el disco virtual (es igual que el umount visto en el punto 5.4 de este punto teórico:
 
+```bash
 sudo guestunmount /mnt
+```
 
 
 
 
 
 ## 8. Crear una nueva VM Ubuntu en el host con virt-manager
+
+Una vez tienes el ISO mediante alguno de los procedimientos anteriores (pen, ftp, montando disco virtual, wget) , se pide que:
 
 1. Abre virt-manager.
 
@@ -306,23 +313,11 @@ En informática, la información se mide en bits y sus múltiplos. Las unidades 
 
 1. Bit
 
-Símbolo: b
-
-Definición: La unidad mínima de información.
-
-Valores posibles: 0 o 1
-
-Uso: Representa un estado lógico, verdadero/falso, encendido/apagado.
+Símbolo: b, es la unidad mínima de información con valores posibles 0 o 1. Representa un estado lógico, verdadero/falso, encendido/apagado.
 
 2. Byte
 
-Símbolo: B
-
-Definición: Conjunto de 8 bits.
-
-Rango de valores: 0 a 255 (2⁸ posibles combinaciones)
-
-Uso: Representa un carácter de texto, un valor numérico pequeño o un color de 8 bits.
+Símbolo: B, representa un conjunto de 8 bits con rango de valores: 0 a 255 (2⁸ posibles combinaciones). Puede representar un carácter de texto, un valor numérico pequeño o un color de 8 bits.
 
 3. Resto de medidas
 
