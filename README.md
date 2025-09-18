@@ -111,7 +111,7 @@ typora (para abrirlo)
 
 ## Objetivo
 - Descargar en la **VM Windows** la ISO de la última versión de Ubuntu Desktop.  
-- Pasar la ISO al **host Linux** mediante un **pendrive USB**.  
+- Pasar la ISO al **host Linux** mediante un **pendrive USB**/ mediante descagar via ftp/ mediante el montado del disco virtual en el que arrancará la máquina cliente en windows/ mediante descarga directa del recurso con wget.  
 - Crear una nueva máquina virtual en el host con esa ISO usando **virt-manager**.  
 
 
@@ -208,6 +208,71 @@ smb://<IP-servidor>/Publica
 
 
 ## 7. Crear una nueva VM Ubuntu en el host con virt-manager
+Si todo lo anterior no funciona lo más limpio es decargar la distribución mediante el comando wget, que permitirá la descarga desde terminal. Otra opción comentada al principio es la de
+montar directamente el disco windows donde se ha descargado la iso de ubuntu desktop en tu host. Esto puede ser también un tanto catastrófico ya que requiere de que tengáis permisos de administrador, aunque
+el proceso en sí, es simple. Para ello, primero, hay que entender que ubuntu no funciona igual. P
+
+### Primero tenemos que entender que es el directorio /mnt en linux.
+
+- /mnt es una carpeta del sistema reservada como punto de montaje.
+
+- Montar = decirle al sistema operativo:
+
+- “Muestra el contenido de este disco/dispositivo dentro de esta carpeta”.
+
+- Si no hay nada montado, /mnt es una carpeta vacía normal en el host.
+
+🔹 2. Discos físicos (ejemplo: un pendrive)
+
+Un pendrive aparece como dispositivo, por ejemplo /dev/sdb1. Para montarlo manualmente:
+
+  ```bash
+sudo mount /dev/sdb1 /mnt
+
+  ```
+Ahora en /mnt ves los archivos del pendrive.
+
+Si creas algo dentro de /mnt, se escribe en el pendrive.
+
+Cuando desmontas (sudo umount /mnt), el contenido del host en /mnt reaparece (si había algo).
+
+
+
+### Ahora bien, aunque similar, para montar discos virtual es un poco distinto. Lo primero es instalar mediante apt una libreria:
+
+
+  ```bash
+sudo guestmount -a /var/lib/libvirt/images/mi_vm.qcow2 -i --ro /mnt
+  ```
+    -a → ruta al disco virtual.
+
+    -i → auto-detección de particiones y sistemas de archivos.
+
+    --ro → modo solo lectura (muy recomendado si no quieres estropear la VM).
+
+    /mnt → punto de montaje en tu host.
+
+
+### Por ultimo vemos como pasar la informacion de la VM al host
+
+Navega hasta: 
+
+/mnt/Users/manolo/Downloads/
+
+
+Copiar el archivo windows.iso de esa carpeta al Downloads del usuario manolo del host Ubuntu:
+
+cp "/mnt/Users/manolo/Downloads/windows.iso" "/home/manolo/Downloads/"
+
+Desmontar el disco virtual:
+
+sudo guestunmount /mnt
+
+
+
+
+
+## 8. Crear una nueva VM Ubuntu en el host con virt-manager
 
 1. Abre virt-manager.
 
@@ -219,11 +284,13 @@ smb://<IP-servidor>/Publica
 
 5. Virt-manager detectará automáticamente que es Ubuntu. Pulsa Forward.
 
-6. Asigna recursos (ejemplo: 4 GB RAM, 2 CPUs, 20 GB disco).
+6. Asigna recursos (ejemplo: 4 GB RAM, 2 CPUs, 40 GB disco).
 
-7. Finaliza: la VM arrancará desde la ISO y verás el instalador de Ubuntu.
+7. 8. Finaliza: la VM arrancará desde la ISO y verás el instalador de Ubuntu.
 
-8. En caso de que algo vaya mal con gnome-disk, mátalo el proceso con: pskill gnome-disk
+8. Sigue los pasos de clase para instalar Ubuntu. Recuerda cambiar el idioma del teclado y descargar el paquete gráfico.
+
+9. En caso de que algo vaya mal con gnome-disk, mátalo el proceso con: pkill gnome-disk
 
 
 
@@ -268,8 +335,6 @@ Uso: Representa un carácter de texto, un valor numérico pequeño o un color de
 | Terabyte | TB      | 2⁴⁰ bytes ≈ 1.099.511.627.776 B         | 10¹² bytes = 1.000.000.000.000 B | Almacenamiento masivo, servidores |
 | Petabyte | PB      | 2⁵⁰ bytes ≈ 1.125.899.906.842.624 B     | 10¹⁵ bytes                       | Centros de datos grandes          |
 | Exabyte  | EB      | 2⁶⁰ bytes ≈ 1.152.921.504.606.846.976 B | 10¹⁸ bytes                       | Internet global (teórico)         |
-
-
 
 
 
