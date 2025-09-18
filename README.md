@@ -54,7 +54,6 @@ Usa `#` para títulos. Cuantos más `#`, más pequeño el encabezado.
 
 ```markdown
 ![Texto alternativo](ruta/de/la/imagen.png)
-![Alt](https://ejemplo.com/imagen.jpg)
 ```
 
 ## 6 Codigo
@@ -89,7 +88,7 @@ ___
 
 ## 9 Instalar Typora en Ubuntu
 
-Para la instalación de typora usaremos muchos comandos bash distintos. Por ahora, conviene que os familiariceis con algunos. En la práctica 5, veremos un poco sobre los distintos paquetes de las distintas distribuciones aunque no veremos mucho de esto hasta más entrados en temario.
+Para la instalación de typora usaremos muchos comandos bash distintos. Por ahora, conviene que os familiariceis con algunos. En el tema 3, veremos un poco sobre los distintos paquetes de las distintas distribuciones. Por ahora, nada de esto.
 
 
 ```bash
