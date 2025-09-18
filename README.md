@@ -307,7 +307,7 @@ Una vez tienes el ISO mediante alguno de los procedimientos anteriores (pen, ftp
 
 # 2. Teoria de Almacenamiento de datos
 
-## 1. Unidades de medida de la información
+## 2.1. Unidades de medida de la información
 
 En informática, la información se mide en bits y sus múltiplos. Las unidades de medida permiten cuantificar la capacidad de almacenamiento o el tamaño de datos.
 
@@ -341,9 +341,9 @@ Símbolo: B, representa un conjunto de 8 bits con rango de valores: 0 a 255 (2�
 
 -Y aquí entra en juego una herramienta clásica de Linux: el comando dd. Este programa trabaja copiando datos a bajo nivel, en bloques cuyo tamaño puede configurarse con el parámetro bs (block size). Si usas dd con un tamaño de bloque alineado con las páginas o bloques físicos del SSD (por ejemplo, 4K o 1M), el rendimiento será mucho mejor. Si eliges tamaños muy pequeños (1K, 512 bytes), el SSD tiene que hacer más operaciones internas.
 
-  -En un SSD, la unidad mínima física de escritura es la página (4 KB – 16 KB).
+  - En un SSD, la unidad mínima física de escritura es la página (4 KB – 16 KB).
 
-  -Si usas dd con un tamaño de bloque (bs) que coincide con la página física (por ejemplo, 4K), la escritura se alinea bien y es eficiente. Supongamos que quiero llenar un SSD con datos de prueba:
+  - Si usas dd con un tamaño de bloque (bs) que coincide con la página física (por ejemplo, 4K), la escritura se alinea bien y es eficiente. Supongamos que quiero llenar un SSD con datos de prueba:
   
     - if = input file (/dev/urandom, datos aleatorios).
 
@@ -355,7 +355,7 @@ Símbolo: B, representa un conjunto de 8 bits con rango de valores: 0 a 255 (2�
 
 
 
-## Consola. Linea de comandos.
+## 2.2 Consola. Linea de comandos.
 
 La interfaz de línea de comandos, en inglés Command Line Interface o CLI, es el conjunto de elementos visuales que permiten, sobre un dispositivo de salida, indicar órdenes o comandos utilizando un dispositivo de entrada. Concretamente se utiliza el teclado para invocar comandos configurados para realizar una serie de acciones y el resultado de la ejecución de estas acciones se mostrará por pantalla.
 
@@ -371,7 +371,7 @@ En cualquier CLI se pueden encontrar los siguientes elementos, que se estudian c
 
 - Salida: datos o información que ofrece el programa como resultado de su procesamiento.
 
-## Ejemplos en ubuntu:
+## 2.3 Ejemplos en ubuntu:
 Uno de los comandos más comunes que veremos cuando listemos la estructura de un directorio en linux (siguiente tema), será el comando ls. En los siguientes ejemplos se muestran casos sencillos de uso dividiendo en la terminología usada anteriormente. La estructura de directorio de un debion también se verá en el siguiente tema y no debe ser objeto de preocupación del alumnado.
 
 ### Ejemplo 1: ls simple
@@ -500,6 +500,7 @@ Intenta sacar esta información (de alguna forma) en un sistema opeerativo windo
 ## 5. ¿Qué tipo de CLI puede usar Windows? Busca información al respecto.
 Intenta sacar esta información (de alguna forma) en un sistema opeerativo windows a través de tu VM.
 
+## 6. ¿Qué es un Live CD o un disco booteable? Busca información al respecto de la relación entre dd y un Live CD, así como precauciones del comando dd.
 
 
 ---
@@ -742,23 +743,5 @@ En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico d
 # 5. Teoria — Hardware básico de un ordenador. CPU y RAM
 
 
-## 1. ¿Qué es la CPU?
 
-La CPU (Unidad Central de Procesamiento) es el cerebro del ordenador. Se encarga de ejecutar instrucciones de los programas y procesa datos que se encuentran en la memoria o que recibe de dispositivos de entrada.
-Está formada por varias subunidades internas, como la unidad aritmético-lógica (ALU) y la unidad de control.
-Los registros son pequeñas áreas de memoria dentro de la CPU que almacenan temporalmente datos o direcciones. Son mucho más rápidos que la RAM y cada registro puede almacenar una cantidad fija de bits, según la arquitectura (8, 16, 32 o 64 bits). 
-
-
-
-
-| Tipo de registro                    | Ejemplos       | Uso principal                                              | Ejemplo práctico                                                                                                  |
-| ----------------------------------- | -------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Registros de propósito general**  | AX, BX, CX, DX | Almacenar temporalmente datos y resultados de operaciones  | `MOV AX, 5` → almacena 5 en AX; `ADD AX, BX` → suma BX a AX                                                       |
-| **Registros de segmento**           | CS, DS, SS, ES | Contienen direcciones base de segmentos de memoria         | `MOV AX, [DS:1234h]` → lee un valor desde un segmento de datos DS. El registro DS tiene, por ejemplo, el valor 2000h. a CPU suma DS + 1234h|
-| **Puntero de instrucción**          | IP/EIP/RIP     | Apunta a la siguiente instrucción que la CPU debe ejecutar | Antes de ejecutar la instrucción MOV AX, BX, el registro de puntero de instrucción (IP) contiene el valor 2000h, es decir, apunta al inicio de esa instrucción en memoria. Cuando la CPU empieza a ejecutar MOV AX, BX, IP sigue indicando 2000h mientras la CPU lee la instrucción y copia el valor de BX a AX. Una vez que la instrucción se ha completado, la CPU incrementa automáticamente el IP en 3 bytes (el tamaño de la instrucción) para que ahora apunte a la siguiente instrucción en memoria, ADD AX, 5, que comienza en la dirección 2003h.|
-
-
-La unidad aritmético-lógica (ALU) es la parte de la CPU que se encarga de realizar todas las operaciones matemáticas y lógicas. Por ejemplo, suma, resta, multiplicación, división, así como operaciones lógicas como AND, OR, XOR o comparaciones entre números. Cada vez que ejecutamos una instrucción como ADD AX, BX, la ALU calcula el resultado de la operación y actualiza los indicadores del estado de la CPU, como la bandera de cero o de acarreo.
-
-Por otro lado, la unidad de control (CU) coordina todo el funcionamiento de la CPU. Su función principal es decodificar las instrucciones, decidir qué señales enviar a la ALU, a los registros y a los buses de memoria, y controlar el flujo de datos dentro de la CPU. (MOV AX, [1234h]) Gracias a la unidad de control, la CPU sabe qué operación ejecutar, qué registros usar y cuándo leer o escribir datos en la memoria.
 
