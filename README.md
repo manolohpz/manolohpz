@@ -1,7 +1,3 @@
-[formulario inicial](https://forms.gle/H8a9SHRHcRtXi4yNA)
-Recordar elección de delegado
-
-
 
 # 1. Teoria de Markdown — Comandos básicos y avanzados
 
