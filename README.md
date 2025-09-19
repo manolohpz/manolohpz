@@ -751,7 +751,7 @@ Establece una linea temporal de las distintas codificaciones, dando ejemplos y e
 
 ## 4.3 Codificaciones de textos
 
-En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico de 4GB de ram, ¿por qué? ¿cuál es el límite teórico a día de hoy?
+En la arquitectura x86 de 32 bits, los ordenadores tenían un límite teórico de 4GB de ram, ¿por qué?, ¿de qué operación sale ese número?, ¿cuál es el límite teórico a día de hoy que otorga los procesadores de 4 bits y por qué?
 
 
 
