@@ -300,15 +300,160 @@ Una vez tienes el ISO mediante alguno de los procedimientos anteriores (pen, ftp
 
 9. En caso de que algo vaya mal con gnome-disk, mátalo el proceso con: pkill gnome-disk
 
+---
 
+
+# 2. Teoría de Sistemas Numéricos en Informática
+
+## 2.1. Sistema Binario
+
+El sistema binario es la base de la informática moderna, ya que los circuitos electrónicos manejan dos estados: encendido (1) y apagado (0).
+
+### 2.1.2 Definición
+
+Sistema de numeración en base 2. Solo utiliza los dígitos 0 y 1.
+
+### 2.1.3 Uso en informática
+
+Representa bits, el nivel más básico de información. Todos los datos y operaciones internas de la CPU se manejan en binario.
+
+Ejemplos:
+| Decimal | Binario |
+| ------- | ------- |
+| 0       | 0       |
+| 1       | 1       |
+| 2       | 10      |
+| 3       | 11      |
+| 4       | 100     |
+| 5       | 101     |
+| 6       | 110     |
+| 7       | 111     |
+| 8       | 1000    |
+| 9       | 1001    |
+| 10      | 1010    |
+
+
+
+## 2.2 Sistema Hexadecimal
+
+El sistema hexadecimal es un sistema de base 16 muy usado en informática para representar grandes cantidades de bits de forma más compacta.
+
+### 2.2.1 Definición
+
+Base 16: utiliza los dígitos 0-9 y las letras A-F (A=10, B=11, …, F=15). Cada dígito hexadecimal equivale exactamente a 4 bits (medio byte o nibble).
+
+### 2.2.2 Uso en informática
+
+Representar direcciones de memoria, valores de bytes y colores en programación. Facilita la lectura y escritura de números binarios largos.
+
+
+| Hexadecimal | Binario | Decimal |
+| ----------- | ------- | ------- |
+| 0           | 0000    | 0       |
+| 1           | 0001    | 1       |
+| 2           | 0010    | 2       |
+| 3           | 0011    | 3       |
+| 4           | 0100    | 4       |
+| 5           | 0101    | 5       |
+| 6           | 0110    | 6       |
+| 7           | 0111    | 7       |
+| 8           | 1000    | 8       |
+| 9           | 1001    | 9       |
+| A           | 1010    | 10      |
+| B           | 1011    | 11      |
+| C           | 1100    | 12      |
+| D           | 1101    | 13      |
+| E           | 1110    | 14      |
+| F           | 1111    | 15      |
+
+
+
+
+## 2.3. Convertir sistemas
+
+
+### 2.3.1 Bineario a hexadecimal
+
+El sistema binario usa base 2 (solo 0 y 1) y el hexadecimal usa base 16 (0–9 y A–F).
+La conversión es muy sencilla porque 1 dígito hexadecimal equivale exactamente a 4 bits (un nibble).
+
+#### Paso 1
+
+Toma el número binario que quieres convertir. Agrupa los bits de derecha a izquierda en bloques de 4. Si el último grupo de la izquierda tiene menos de 4 bits, agrega ceros a la izquierda para completar el grupo.
+
+#### Paso 2
+
+Convertir cada bloque a hexadecimal mirando la tabla siguiente ya mencionada antes
+¿Qué se hace si el numero tiene 10 bits? Pensarlo
+
+
+| Hexadecimal | Binario | Decimal |
+| ----------- | ------- | ------- |
+| 0           | 0000    | 0       |
+| 1           | 0001    | 1       |
+| 2           | 0010    | 2       |
+| 3           | 0011    | 3       |
+| 4           | 0100    | 4       |
+| 5           | 0101    | 5       |
+| 6           | 0110    | 6       |
+| 7           | 0111    | 7       |
+| 8           | 1000    | 8       |
+| 9           | 1001    | 9       |
+| A           | 1010    | 10      |
+| B           | 1011    | 11      |
+| C           | 1100    | 12      |
+| D           | 1101    | 13      |
+| E           | 1110    | 14      |
+| F           | 1111    | 15      |
+
+
+### 2.3.2 Hexadecimal al Binario
+
+Es exactamente lo mismo, al reves. Cada dígito del hexadecimal representa un número binario.
+
+
+### 2.3.3 Decimal al Binario
+
+El sistema decimal usa base 10 (0–9), y el sistema binario usa base 2 (0 y 1).
+Para pasar de decimal a binario, usamos el método de divisiones sucesivas:
+
+Toma el número decimal que quieres convertir.
+
+Divídelo entre 2.
+
+Anota el residuo (0 o 1).
+
+Divide el cociente entre 2 nuevamente y repite el proceso hasta que el cociente sea 0.
+
+```text
+13 ÷ 2 = 6 residuo 1
+6 ÷ 2  = 3 residuo 0
+3 ÷ 2  = 1 residuo 1
+1 ÷ 2  = 0 residuo 1
+```
+
+
+# 2. Práctica — Observar la diferencia en notación decimal vs binaria. Rellena la siguiente tabla
+Entrega en Markdown (via PDF) la explicación de las operaciones.
+
+| Decimal | Binario  | Hexadecimal |
+| ------- | -------- | ----------- |
+| 5       |          |             |
+| 12      |          |             |
+| 25      |          |             |
+| 60      |          |             |
+|         | 11010110 |             |
+|         | 10101100 |             |
+|         |          | 1F          |
+|         |          | A7          |
 
 
 ---
 
 
-# 2. Teoria de Almacenamiento de datos
+# 3. Teoria de Almacenamiento de datos
 
-## 2.1. Unidades de medida de la información
+## 3.1. Unidades de medida de la información
 
 En informática, la información se mide en bits y sus múltiplos. Las unidades de medida permiten cuantificar la capacidad de almacenamiento o el tamaño de datos.
 
@@ -336,7 +481,9 @@ Símbolo: B, representa un conjunto de 8 bits con rango de valores: 0 a 255 (2�
 
 - Cuando hablamos de cómo se guarda la información en un ordenador, siempre debemos volver a lo esencial: todo se reduce a bits, ceros y unos. Estos valores, que representan estados eléctricos o magnéticos, necesitan un soporte físico en el que almacenarse para que el sistema pueda conservarlos incluso cuando se apaga la máquina.
 
-- Durante décadas, ese soporte ha sido el disco duro mecánico o HDD. Un HDD funciona con platos recubiertos de material magnético que giran a gran velocidad. Un cabezal de lectura y escritura se desplaza sobre esos platos, cambiando la orientación de pequeñísimas zonas magnéticas para representar un 0 o un 1. La información no se almacena de forma caótica, sino organizada en sectores (unidades mínimas de almacenamiento, normalmente de 512 bytes o 4 KB), que a su vez forman pistas y cilindros. Esta organización permite que el sistema operativo localice y lea los datos de manera ordenada.
+- Durante décadas, ese soporte ha sido el disco duro mecánico o HDD. Un HDD funciona con platos recubiertos de material magnético que giran a gran velocidad. Un cabezal de lectura y escritura se desplaza sobre esos platos, cambiando la orientación de pequeñísimas zonas magnéticas para representar un 0 o un 1. La información no se almacena de forma caótica, sino organizada en sectores (unidades mínimas de almacenamiento, normalmente de 512 bytes o 4 KB), que a su vez forman pistas. Esta organización permite que el sistema operativo localice y lea los datos de manera ordenada.
+
+![imagen disco hdd](https://upload.wikimedia.org/wikipedia/commons/a/ae/Disk-structure2.svg)
 
 - Más recientemente aparecieron los SSD o discos de estado sólido, que funcionan de una manera completamente diferente. En lugar de partes mecánicas y magnéticas, los SSD utilizan memoria flash NAND. Cada bit de información queda guardado como una carga eléctrica dentro de transistores microscópicos. La ventaja fundamental es que no hay partes móviles: la lectura y escritura es casi instantánea y mucho más fiable a largo plazo frente a golpes o vibraciones. La información se organiza en páginas (que suelen ser de 4 a 16 KB). Esas páginas no están sueltas: se agrupan en bloques, normalmente de 1 MB (varias páginas juntas), pero el principio sigue siendo el mismo: representar ceros y unos que luego el sistema operativo agrupa en archivos y carpetas. El borrado siempre se hace a nivel de bloque completo, es decir, la unidad mínima de borrado es 1MB.
 
@@ -354,9 +501,15 @@ Símbolo: B, representa un conjunto de 8 bits con rango de valores: 0 a 255 (2�
 
     - Esto coincide bastante con el tamaño de un bloque interno del SSD (≈128 páginas de 8K = 1 MB).
 
+Veamos un ejemplo, como decíamos, el comando dd se usa en Linux/Unix para copiar datos a bajo nivel, por ejemplo, grabar una ISO de Ubuntu en una memoria USB. Vamos a ver un ejemplo de cómo hacerlo:
+
+```bash
+sudo dd if=~/Descargas/ubuntu.iso of=/dev/sdX bs=4M status=progress conv=fsync
+```
+donde /dev/sdX es nuestro pendrive, buscado gracias a lsblk.
 
 
-## 2.2 Consola. Linea de comandos.
+## 3.2 Consola. Linea de comandos.
 
 La interfaz de línea de comandos, en inglés Command Line Interface o CLI, es el conjunto de elementos visuales que permiten, sobre un dispositivo de salida, indicar órdenes o comandos utilizando un dispositivo de entrada. Concretamente se utiliza el teclado para invocar comandos configurados para realizar una serie de acciones y el resultado de la ejecución de estas acciones se mostrará por pantalla.
 
@@ -372,7 +525,7 @@ En cualquier CLI se pueden encontrar los siguientes elementos, que se estudian c
 
 - Salida: datos o información que ofrece el programa como resultado de su procesamiento.
 
-## 2.3 Ejemplos en ubuntu:
+## 3.3 Ejemplos en ubuntu:
 Uno de los comandos más comunes que veremos cuando listemos la estructura de un directorio en linux (siguiente tema), será el comando ls. En los siguientes ejemplos se muestran casos sencillos de uso dividiendo en la terminología usada anteriormente. La estructura de directorio de un debion también se verá en el siguiente tema y no debe ser objeto de preocupación del alumnado.
 
 ### Ejemplo 1: ls simple
@@ -454,7 +607,7 @@ Salida: no se muestra nada en pantalla; se guarda en lista.txt.
 
 
 
-# 2. Práctica — Observar la diferencia en notación decimal vs binaria. Probamos la CLI de Ubuntu.
+# 3. Práctica — Observar la diferencia en notación decimal vs binaria. Probamos la CLI de Ubuntu.
 
 Habitualmente, cuando compramos un disco duro, lo solecmos comprar con "unidades redondas", es decir, 1tb, 500gb...
 Sin embargo, a la hora de ver el disco dentro de nuestro ordenador, nos encontramos con sorpresas.
@@ -491,168 +644,33 @@ Haz clasificación de comando según: Prompt de usuario, Comando, Parámetro, Op
 Disk /dev/sda: 500107 MB, 500107862016 bytes
 ```
 
-Anota el tamaño en bytes y comprueba cómo se traduce a GB: GB = bytes ÷ 1.073.741.824 ¿Por qué sale este número?,es un número redondo como en el caso de tu máquina VM? Si la tienda de tu barrio te vendiese este disco, ¿cuántos GB dirían que tiene?
+Anota el tamaño en bytes y comprueba cómo se traduce a GB: GB = bytes ÷ 1.073.741.824 ¿Por qué sale este número?,¿Te coincide con el número de GiB de tu máquina virtual? Si la tienda de tu barrio te vendiese este disco, ¿cuántos GB dirían que tiene?
 
 
 
-## 4. Obtener el tamaño exacto en bytes
-Intenta sacar esta información (de alguna forma) en un sistema opeerativo windows a través de tu VM.
+## 4. GiB vs GB en windows
+En Windows, vete al administrador de discos. Ahora, comprueba en GiB el tamaño de tu disco. ¿Cuál es el tamaño en GB que te anunciaría una tienda?
+
+## 5. Conversión de unidades
 
 
-## 5. ¿Qué tipo de CLI puede usar Windows? Busca información al respecto.
+- Convierte 8192 bytes a KiB.
 
-## 6. ¿Qué es un Live CD o un disco booteable? Busca información al respecto de la relación entre dd y un Live CD, así como precauciones del comando dd.
+- Convierte 5 MiB a KiB.
+
+- Convierte 2 GiB a MiB.
+
+- Convierte 1 TiB a GiB.
+
+- Convierte 3,145,728 bytes a MiB.
+
+
+## 6. ¿Qué tipo de CLI puede usar Windows? Busca información al respecto.
+
+## 7. ¿Qué es un Live CD o un disco booteable? Busca información al respecto de la relación entre dd y un Live CD, así como precauciones del comando dd.
 
 
 ---
-
-# 3. Teoría de Sistemas Numéricos en Informática
-
-## 1. Sistema Binario
-
-El sistema binario es la base de la informática moderna, ya que los circuitos electrónicos manejan dos estados: encendido (1) y apagado (0).
-
-### 1.1 Definición
-
-Sistema de numeración en base 2. Solo utiliza los dígitos 0 y 1.
-
-### 1.2 Uso en informática
-
-Representa bits, el nivel más básico de información. Todos los datos y operaciones internas de la CPU se manejan en binario.
-
-Ejemplos:
-| Decimal | Binario |
-| ------- | ------- |
-| 0       | 0       |
-| 1       | 1       |
-| 2       | 10      |
-| 3       | 11      |
-| 4       | 100     |
-| 5       | 101     |
-| 6       | 110     |
-| 7       | 111     |
-| 8       | 1000    |
-| 9       | 1001    |
-| 10      | 1010    |
-
-
-
-## 2. Sistema Hexadecimal
-
-El sistema hexadecimal es un sistema de base 16 muy usado en informática para representar grandes cantidades de bits de forma más compacta.
-
-### 1.1 Definición
-
-Base 16: utiliza los dígitos 0-9 y las letras A-F (A=10, B=11, …, F=15). Cada dígito hexadecimal equivale exactamente a 4 bits (medio byte o nibble).
-
-### 1.2 Uso en informática
-
-Representar direcciones de memoria, valores de bytes y colores en programación. Facilita la lectura y escritura de números binarios largos.
-
-
-| Hexadecimal | Binario | Decimal |
-| ----------- | ------- | ------- |
-| 0           | 0000    | 0       |
-| 1           | 0001    | 1       |
-| 2           | 0010    | 2       |
-| 3           | 0011    | 3       |
-| 4           | 0100    | 4       |
-| 5           | 0101    | 5       |
-| 6           | 0110    | 6       |
-| 7           | 0111    | 7       |
-| 8           | 1000    | 8       |
-| 9           | 1001    | 9       |
-| A           | 1010    | 10      |
-| B           | 1011    | 11      |
-| C           | 1100    | 12      |
-| D           | 1101    | 13      |
-| E           | 1110    | 14      |
-| F           | 1111    | 15      |
-
-
-
-
-## 3. Convertir sistemas
-
-
-### 3.1 Bineario a hexadecimal
-
-El sistema binario usa base 2 (solo 0 y 1) y el hexadecimal usa base 16 (0–9 y A–F).
-La conversión es muy sencilla porque 1 dígito hexadecimal equivale exactamente a 4 bits (un nibble).
-
-### Paso 1
-
-Toma el número binario que quieres convertir. Agrupa los bits de derecha a izquierda en bloques de 4. Si el último grupo de la izquierda tiene menos de 4 bits, agrega ceros a la izquierda para completar el grupo.
-
-### Paso 2
-
-Convertir cada bloque a hexadecimal mirando la tabla siguiente ya mencionada antes
-¿Qué se hace si el numero tiene 10 bits? Pensarlo
-
-
-| Hexadecimal | Binario | Decimal |
-| ----------- | ------- | ------- |
-| 0           | 0000    | 0       |
-| 1           | 0001    | 1       |
-| 2           | 0010    | 2       |
-| 3           | 0011    | 3       |
-| 4           | 0100    | 4       |
-| 5           | 0101    | 5       |
-| 6           | 0110    | 6       |
-| 7           | 0111    | 7       |
-| 8           | 1000    | 8       |
-| 9           | 1001    | 9       |
-| A           | 1010    | 10      |
-| B           | 1011    | 11      |
-| C           | 1100    | 12      |
-| D           | 1101    | 13      |
-| E           | 1110    | 14      |
-| F           | 1111    | 15      |
-
-
-### 3.2 Hexadecimal al Binario
-
-Es exactamente lo mismo, al reves. Cada dígito del hexadecimal representa un número binario.
-
-
-### 3.3 Decimal al Binario
-
-El sistema decimal usa base 10 (0–9), y el sistema binario usa base 2 (0 y 1).
-Para pasar de decimal a binario, usamos el método de divisiones sucesivas:
-
-Toma el número decimal que quieres convertir.
-
-Divídelo entre 2.
-
-Anota el residuo (0 o 1).
-
-Divide el cociente entre 2 nuevamente y repite el proceso hasta que el cociente sea 0.
-
-```text
-13 ÷ 2 = 6 residuo 1
-6 ÷ 2  = 3 residuo 0
-3 ÷ 2  = 1 residuo 1
-1 ÷ 2  = 0 residuo 1
-```
-
-
-# 3. Práctica — Observar la diferencia en notación decimal vs binaria. Rellena la siguiente tabla
-Entrega en Markdown (via PDF) la explicación de las operaciones.
-
-| Decimal | Binario  | Hexadecimal |
-| ------- | -------- | ----------- |
-| 5       |          |             |
-| 12      |          |             |
-| 25      |          |             |
-| 60      |          |             |
-|         | 11010110 |             |
-|         | 10101100 |             |
-|         |          | 1F          |
-|         |          | A7          |
-
-
-
-----
 
 # 4. Teoria — Hardware básico de un ordenador. CPU y RAM
 
